@@ -10,19 +10,25 @@
 import java.util.*;
 
 public class SimpleDataStructure {
-	private String [] friends;
+	private String[] friends;
 	private int counter;
 
 	public SimpleDataStructure() {
-		friends = new String[5];
+		friends = new String[2];
 		counter = 0;
 	}
 
-	/* Appends the other friend name to the end of this list. */
-	public boolean add(String other){
-		friends[counter] = other;
-		counter++;
-		return true;
+	/**
+	 * Appends one of your friends to your friends' list.
+	 * 
+	 * @param str the name of your friend.
+	 */
+	public void add(String str) {
+		if (friends.length == counter) {
+			friends = Arrays.copyOf(friends, friends.length * 2);
+		}
+		
+		friends[counter++] = str;
 	}
 
 	/** returns the name at the specified index*/
@@ -55,8 +61,22 @@ public class SimpleDataStructure {
 	
 	// Start of program!
 	public static void main(String [] arg) {
+		
+		/*
+		 * Now I will be able to add all of my friends!
+		 * Without having to worry that the program will crash!
+		 * or...
+		 */
 		SimpleDataStructure myfriends = new SimpleDataStructure();
 		myfriends.add("Kalle");
+		myfriends.add("Thomas");
+		myfriends.add("Ludwig");
+		myfriends.add("Johannes");
+		myfriends.add("Linus");
+		myfriends.add("Jacob");
+		myfriends.add("Noa");
+		myfriends.add("Johan");
+		
 		myfriends.printFriends();
 	}
 }
