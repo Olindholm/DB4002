@@ -19,7 +19,7 @@ public class SimpleDataStructure {
 	}
 
 	/**
-	 * Appends one of your friends to your friends' list.
+	 * Appends one of your friends to your friend-list.
 	 * 
 	 * @param str the name of your friend.
 	 */
@@ -30,10 +30,23 @@ public class SimpleDataStructure {
 		
 		friends[counter++] = str;
 	}
-
-	/** returns the name at the specified index*/
+	
+	/**
+	 * Returns the name at the given index,
+	 * provided it exists, else returns null.
+	 * 
+	 * The index must be a natural number (including zero),
+	 * and must not be larger than the friends-list.
+	 * 
+	 * @param index the index of the friend's name.
+	 * @return returns the name at the given index if it exists, else null.
+	 */
 	public String get(int index) {
-		return friends[index];
+		if (index >= 0 && index < counter) {
+			return friends[index];
+		}
+		
+		return null;
 	}
 
 	/** removes the first occurrence of the specified element in this list if the list contains the name */
