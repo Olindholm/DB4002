@@ -53,7 +53,20 @@ public class SimpleDataStructure {
 	public boolean remove(String name) {
 		for (int i = 0; i < counter; i++) {
 			if (friends[i].equals(name)) {
-				friends[i] = null;
+				counter--;
+				
+				/*
+				 * If the friend's name is found, remove it.
+				 * This is accomplished by shifting all names
+				 * in the latter of the array one step back/lower.
+				 * This leaves one friends name being duplicated in
+				 * the end, no worries. It cannot be accessed and
+				 * will be overridden if a new friend's name is added.
+				 */
+				for (int j = i; j < counter; j++) {
+					friends[j] = friends[j + 1];
+				}
+				
 				return true;
 			}
 		}
@@ -89,6 +102,9 @@ public class SimpleDataStructure {
 		myfriends.add("Jacob");
 		myfriends.add("Noa");
 		myfriends.add("Johan");
+		
+		// I'm sad to let you go buddy!
+		myfriends.remove("Ludwig");
 		
 		myfriends.printFriends();
 	}
