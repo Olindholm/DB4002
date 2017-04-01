@@ -10,12 +10,36 @@
 import java.util.*;
 
 public class SimpleDataStructure {
-	private String[] friends;
-	private int counter;
-
-	public SimpleDataStructure() {
-		friends = new String[2];
-		counter = 0;
+	private String[] friends = new String[2];
+	private int counter = 0;
+	
+	/**
+	 * Adds a name to the friends-list.
+	 * Ensures the list is in alphabetical order.
+	 * 
+	 * @param name the name to be added.
+	 */
+	public void addSort(String name) {
+		this.add(name);
+		this.sort();
+	}
+	
+	/**
+	 * Sorts the list in alphabetical order.
+	 */
+	public void sort() {
+		for (int i = 0; i < (counter - 1); i++) {
+			String a = friends[i];
+			String b = friends[i + 1];
+			
+			if (a.toLowerCase().compareTo(b.toLowerCase()) > 0) {
+				friends[i] = b;
+				friends[i + 1] = a;
+				i = (i == 0) ? (i - 1) : (i - 2);
+			}
+			
+			this.printFriends();
+		}
 	}
 
 	/**
@@ -30,7 +54,7 @@ public class SimpleDataStructure {
 		
 		friends[counter++] = str;
 	}
-	
+
 	/**
 	 * Returns the name at the given index,
 	 * provided it exists, else returns null.
@@ -49,10 +73,16 @@ public class SimpleDataStructure {
 		return null;
 	}
 
-	/** removes the first occurrence of the specified element in this list if the list contains the name */
+	/**
+	 * Removes the first occurrence of you friends name.
+	 * Returns true if successful, false if the name was not found.
+	 * 
+	 * @param name the name to be removed.
+	 * @return returns true if successful, false if the name was not found.
+	 */
 	public boolean remove(String name) {
 		for (int i = 0; i < counter; i++) {
-			if (friends[i].equals(name)) {
+			if (friends[i].equalsIgnoreCase(name)) {
 				counter--;
 				
 				/*
@@ -81,10 +111,10 @@ public class SimpleDataStructure {
 		for (int i = 0; i < counter; i++) {
 			System.out.print(friends[i] + " ");
 		}
-
+		
 		System.out.println();
 	}
-	
+
 	// Start of program!
 	public static void main(String [] arg) {
 		
@@ -103,8 +133,7 @@ public class SimpleDataStructure {
 		myfriends.add("Noa");
 		myfriends.add("Johan");
 		
-		// I'm sad to let you go buddy!
-		myfriends.remove("Ludwig");
+		myfriends.sort();
 		
 		myfriends.printFriends();
 	}
